@@ -1,0 +1,24 @@
+###
+GET http://localhost:3333/users
+
+###
+POST http://localhost:3333/users
+Content-Type: application/json
+
+{
+  "name": "Fulano",
+  "email": "fulano@gmail.com",
+  "password": "123123"
+}
+
+###
+GET http://localhost:3333/users/9afc82e1-7160-4e3a-9fe5-752bccec8993
+
+###
+PUT  http://localhost:3333/users/9afc82e1-7160-4e3a-9fe5-752bccec8993
+Content-Type: application/json
+
+{
+  "name": "Fulano",
+  "email": "fulano@gmail.com"
+}

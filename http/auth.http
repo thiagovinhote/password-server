@@ -1,0 +1,13 @@
+###
+POST http://localhost:3333/auth/login
+Content-Type: application/json
+
+{
+  "email": "fulano@gmail.com",
+  "password": "123123"
+}
+
+###
+GET  http://localhost:3333/auth/me
+Content-Type: application/json
+Authorization: Bearer Y2t0dW95ZW92MDAwMHVldmU3a2xtM2pmeA.mxJgjpMo95V7kA4cjJS8bhMjACv0cDD4dBeMylhEpQE6slkSnozsWQL9JOHK
