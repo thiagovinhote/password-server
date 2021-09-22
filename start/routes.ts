@@ -27,4 +27,5 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource('users', 'UsersController').apiOnly()
+  Route.resource('credentials', 'CredentialsController').apiOnly()
 }).middleware('auth')
