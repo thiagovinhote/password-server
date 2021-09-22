@@ -1,7 +1,15 @@
 import { v4 as uuid } from 'uuid'
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  beforeCreate,
+  beforeSave,
+  column,
+  hasMany,
+  HasMany,
+} from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
+import Credential from './Credential'
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -17,6 +25,9 @@ export default class User extends BaseModel {
 
   @column({ serializeAs: null })
   public password: string
+
+  @hasMany(() => Credential, { foreignKey: 'user_id' })
+  public credentials: HasMany<typeof Credential>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

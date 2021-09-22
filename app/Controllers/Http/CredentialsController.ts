@@ -1,16 +1,17 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
-import Credential from 'App/Models/Credential'
 
 export default class CredentialsController {
-  public index() {
-    return Credential.all()
+  public index: RouteHandler = ({ auth }) => {
+    return auth.user?.related('credentials').query()
   }
 
-  public store: RouteHandler = ({ request }) => {
-    const payload = request.only<keyof Credential>(['name', 'password', 'description'])
+  public store: RouteHandler = ({ request, auth }) => {
+    const user = auth.user!
+
+    const payload = request.only(['name', 'password', 'description'])
     const username = request.input('username', '*')
 
-    const credential = Credential.create({
+    const credential = user.related('credentials').create({
       ...payload,
       username,
     })
