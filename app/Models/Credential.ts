@@ -19,6 +19,9 @@ export default class Credential extends BaseModel {
   @column()
   public description: string
 
+  @column({ serializeAs: null })
+  public user_id: string
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
