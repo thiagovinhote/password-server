@@ -1,7 +1,20 @@
 import { v4 as uuid } from 'uuid'
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
+import {
+  BaseModel,
+  beforeCreate,
+  beforeSave,
+  BelongsTo,
+  belongsTo,
+  column,
+  HasManyThrough,
+  hasManyThrough,
+  ManyToMany,
+  manyToMany,
+} from '@ioc:Adonis/Lucid/Orm'
 import Encryption from '@ioc:Adonis/Core/Encryption'
+import CredentialTag from './CredentialTag'
+import Tag from './Tag'
 
 export default class Credential extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -23,6 +36,23 @@ export default class Credential extends BaseModel {
 
   @column({ serializeAs: null })
   public user_id: string
+
+  @belongsTo(() => CredentialTag, { foreignKey: 'credential_id' })
+  public tagPivot: BelongsTo<typeof CredentialTag>
+
+  @hasManyThrough([() => Tag, () => CredentialTag], {
+    foreignKey: 'credential_id',
+    throughLocalKey: 'tag_id',
+    throughForeignKey: 'id',
+  })
+  public tags: HasManyThrough<typeof Tag>
+  // @manyToMany(() => Tag, {
+  //   pivotForeignKey: 'credential_id',
+  //   pivotRelatedForeignKey: 'tag_id',
+  //   pivotTable: 'credential_tag',
+  //   pivotTimestamps: true,
+  // })
+  // public tags: ManyToMany<typeof Tag>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
