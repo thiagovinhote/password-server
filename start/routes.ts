@@ -28,8 +28,9 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource('users', 'UsersController').apiOnly().except(['create'])
-  Route.resource('credentials', 'CredentialsController').apiOnly()
   Route.resource('tags', 'TagsController').apiOnly()
+  Route.resource('credentials', 'CredentialsController').apiOnly()
+  Route.resource('credentials.tags', 'CredentialTagsController').apiOnly()
   Route.resource('folders', 'FoldersController').apiOnly()
   Route.resource('folders.credentials', 'FolderCredentialsController').apiOnly()
 }).middleware('auth')

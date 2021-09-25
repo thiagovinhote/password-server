@@ -2,7 +2,7 @@ import { RouteHandler } from '@ioc:Adonis/Core/Route'
 
 export default class CredentialsController {
   public index: RouteHandler = ({ auth }) => {
-    return auth.user?.related('credentials').query()
+    return auth.user?.related('credentials').query().preload('tags')
   }
 
   public store: RouteHandler = ({ request, auth }) => {
