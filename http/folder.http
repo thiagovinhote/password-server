@@ -1,12 +1,25 @@
 ###
 GET http://localhost:3333/folders
-Authorization: Bearer Y2t0enZnN2NmMDAwMDVndmUwN243MGZtNQ.AoKDOkUn8Vq0se4FO1KahGMwYDD2GUPji-iru53ddgXMCkkgWcjXRkt7BYo9
+Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
 
 ###
 POST http://localhost:3333/folders
 Content-Type: application/json
-Authorization: Bearer Y2t0enZnN2NmMDAwMDVndmUwN243MGZtNQ.AoKDOkUn8Vq0se4FO1KahGMwYDD2GUPji-iru53ddgXMCkkgWcjXRkt7BYo9
+Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
 
 {
-  "name": "BR Tech"
+  "name": "BR Tech 2"
+}
+
+###
+GET http://localhost:3333/folders/d14c49bc-13d8-4ee8-913c-1bf7298e50ab/credentials
+Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
+
+###
+POST http://localhost:3333/folders/76d77418-3373-4a3e-a0fa-7fafc0fec6b5/credentials
+Content-Type: application/json
+Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
+
+{
+  "credential_id": "11ac0c88-8b86-43ba-bf72-b28a90cb5e7c"
 }
