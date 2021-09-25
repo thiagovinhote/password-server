@@ -12,7 +12,9 @@ export default class TagsController {
   public store: RouteHandler = async ({ auth, request }) => {
     const { user } = auth
     const newTagSchema = schema.create({
-      label: schema.string({ trim: true }, [rules.unique({ table: 'tags', column: 'label' })]),
+      label: schema.string({ trim: true }, [
+        rules.unique({ table: 'tags', column: 'label', where: { user_id: user?.id } }),
+      ]),
       color: schema.string(undefined, [rules.regex(/^#[0-9a-f]{6}/i)]),
     })
     const payload = await request.validate({ schema: newTagSchema })

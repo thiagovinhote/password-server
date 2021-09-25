@@ -6,7 +6,7 @@ export default class Tags extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary()
-      table.string('label').unique().notNullable()
+      table.string('label').notNullable()
       table.string('color').notNullable()
 
       /**
