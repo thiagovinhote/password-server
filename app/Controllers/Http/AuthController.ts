@@ -1,11 +1,19 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class AuthController {
-  public login: RouteHandler = ({ auth, request }) => {
+  public login: RouteHandler = async ({ auth, request }) => {
     const email = request.input('email')
     const password = request.input('password')
 
-    return auth.use('api').attempt(email, password, { expiresIn: '1min' })
+    const token = await auth
+      .use('api')
+      .attempt(email, password, { expiresIn: Env.get('JWT_EXPIRES_IN') })
+
+    return {
+      user: token.user,
+      token: token.token,
+    }
   }
 
   public me: RouteHandler = ({ auth }) => {
