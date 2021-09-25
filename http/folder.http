@@ -1,0 +1,12 @@
+###
+GET http://localhost:3333/folders
+Authorization: Bearer Y2t0enZnN2NmMDAwMDVndmUwN243MGZtNQ.AoKDOkUn8Vq0se4FO1KahGMwYDD2GUPji-iru53ddgXMCkkgWcjXRkt7BYo9
+
+###
+POST http://localhost:3333/folders
+Content-Type: application/json
+Authorization: Bearer Y2t0enZnN2NmMDAwMDVndmUwN243MGZtNQ.AoKDOkUn8Vq0se4FO1KahGMwYDD2GUPji-iru53ddgXMCkkgWcjXRkt7BYo9
+
+{
+  "name": "BR Tech"
+}
