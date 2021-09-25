@@ -31,4 +31,5 @@ Route.group(() => {
   Route.resource('credentials', 'CredentialsController').apiOnly()
   Route.resource('tags', 'TagsController').apiOnly()
   Route.resource('folders', 'FoldersController').apiOnly()
+  Route.resource('folders.credentials', 'FolderCredentialsController').apiOnly()
 }).middleware('auth')
