@@ -1,0 +1,13 @@
+###
+GET http://localhost:3333/tags
+Authorization: Bearer Y2t0emNvaTVyMDAwMGZ2dmUxdmdnMmlzbg.-JyCUuChF9Rcz8zm8Hyyg9SRRJQ3c7CGQg94-KAwSGAsHnN7wlgmCP5s8Iwe
+
+###
+POST http://localhost:3333/tags
+Content-Type: application/json
+Authorization: Bearer Y2t0emJsbnc3MDAwMHlsdmVlYXU0OGgzbw.CUbM2SNCCQQAsU7zwWjoKBS8lo_WtwYDeXiPuC7bLzdCOnWSIqUErHyIL2uk
+
+{
+  "label": "Production",
+  "color": "#ABCABC"
+}
