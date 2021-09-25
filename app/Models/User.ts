@@ -10,6 +10,7 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Credential from './Credential'
+import Tag from './Tag'
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -28,6 +29,9 @@ export default class User extends BaseModel {
 
   @hasMany(() => Credential, { foreignKey: 'user_id' })
   public credentials: HasMany<typeof Credential>
+
+  @hasMany(() => Tag, { foreignKey: 'user_id' })
+  public tags: HasMany<typeof Tag>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

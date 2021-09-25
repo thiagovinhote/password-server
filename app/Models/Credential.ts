@@ -4,6 +4,8 @@ import { BaseModel, beforeCreate, beforeSave, column } from '@ioc:Adonis/Lucid/O
 import Encryption from '@ioc:Adonis/Core/Encryption'
 
 export default class Credential extends BaseModel {
+  public static selfAssignPrimaryKey = true
+
   @column({ isPrimary: true })
   public id: string
 

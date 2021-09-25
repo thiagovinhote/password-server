@@ -29,4 +29,5 @@ Route.group(() => {
 Route.group(() => {
   Route.resource('users', 'UsersController').apiOnly().except(['create'])
   Route.resource('credentials', 'CredentialsController').apiOnly()
+  Route.resource('tags', 'TagsController').apiOnly()
 }).middleware('auth')
