@@ -8,6 +8,16 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:3333/auth/register
+Content-Type: application/json
+
+{
+  "name": "Vinhote",
+  "email": "thiago.esw@gmail.com",
+  "password": "123123"
+}
+
+###
 GET  http://localhost:3333/auth/me
 Content-Type: application/json
-Authorization: Bearer Y2t0dW95ZW92MDAwMHVldmU3a2xtM2pmeA.mxJgjpMo95V7kA4cjJS8bhMjACv0cDD4dBeMylhEpQE6slkSnozsWQL9JOHK
+Authorization: Bearer Y2t0dXZ6aXIwMDAwMDkzdmVlYTd1NjRncg.0nMTb6ajPHrYHeuP08hGYmJYXNxuRFiIDf-0OEB7Q__GXN20-u4JTDnHNi-x
