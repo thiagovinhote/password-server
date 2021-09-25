@@ -1,13 +1,13 @@
 ###
 GET http://localhost:3333/tags
-Authorization: Bearer Y2t0emNvaTVyMDAwMGZ2dmUxdmdnMmlzbg.-JyCUuChF9Rcz8zm8Hyyg9SRRJQ3c7CGQg94-KAwSGAsHnN7wlgmCP5s8Iwe
+Authorization: Bearer Y2t0enpyMHBpMDAwMDB2dmVmcWFvOHd2Yg.HxlzV1l57oPpMfB26lbKxZX7dScZwQOwzEIDuU8cj2dCpPvdsDCSzPzD1PWd
 
 ###
 POST http://localhost:3333/tags
 Content-Type: application/json
-Authorization: Bearer Y2t0emJsbnc3MDAwMHlsdmVlYXU0OGgzbw.CUbM2SNCCQQAsU7zwWjoKBS8lo_WtwYDeXiPuC7bLzdCOnWSIqUErHyIL2uk
+Authorization: Bearer Y2t1MDRqc2wxMDAwMTJsdmVnZnA2ZXkwZA.qIch0exd2zFlRK7OTSZtXZncCAwLAmI7cCtoLndtgI_9fPUhbMgmzwBAY_Ge
 
 {
-  "label": "Production",
-  "color": "#ABCABC"
+  "label": "Beta",
+  "color": "#EDDABC"
 }
