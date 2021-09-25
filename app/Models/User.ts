@@ -11,6 +11,7 @@ import {
 import Hash from '@ioc:Adonis/Core/Hash'
 import Credential from './Credential'
 import Tag from './Tag'
+import Folder from './Folder'
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -32,6 +33,9 @@ export default class User extends BaseModel {
 
   @hasMany(() => Tag, { foreignKey: 'user_id' })
   public tags: HasMany<typeof Tag>
+
+  @hasMany(() => Folder, { foreignKey: 'user_id' })
+  public folders: HasMany<typeof Folder>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
