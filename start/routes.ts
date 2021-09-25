@@ -22,10 +22,11 @@ import Route from '@ioc:Adonis/Core/Route'
 
 Route.group(() => {
   Route.post('login', 'AuthController.login')
+  Route.post('register', 'UsersController.store')
   Route.get('me', 'AuthController.me').middleware('auth')
 }).prefix('auth')
 
 Route.group(() => {
-  Route.resource('users', 'UsersController').apiOnly()
+  Route.resource('users', 'UsersController').apiOnly().except(['create'])
   Route.resource('credentials', 'CredentialsController').apiOnly()
 }).middleware('auth')
