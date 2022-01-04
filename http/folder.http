@@ -16,10 +16,10 @@ GET http://localhost:3333/folders/d14c49bc-13d8-4ee8-913c-1bf7298e50ab/credentia
 Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
 
 ###
-POST http://localhost:3333/folders/76d77418-3373-4a3e-a0fa-7fafc0fec6b5/credentials
+POST http://localhost:3333/folders/f031e4eb-0380-4aba-89f4-a63619fdae22/credentials
 Content-Type: application/json
-Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
+Authorization: Bearer Y2t5MGV0aWVtMDAwMGRkZ25neGJyZGV1OA.xk3aJmrDCxZKasPyUSQfUwxk3MHg26UkRlPa_nJuGQ-CRzqmQKABos80q6Pv
 
 {
-  "credential_id": "11ac0c88-8b86-43ba-bf72-b28a90cb5e7c"
+  "credential_id": "d961b0f8-041b-41c8-a1a1-f85bff233c2a"
 }

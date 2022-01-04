@@ -33,4 +33,5 @@ Route.group(() => {
   Route.resource('credentials.tags', 'CredentialTagsController').apiOnly()
   Route.resource('folders', 'FoldersController').apiOnly()
   Route.resource('folders.credentials', 'FolderCredentialsController').apiOnly()
+  Route.resource('credentials.password', 'PasswordController').only(['index'])
 }).middleware('auth')

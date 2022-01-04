@@ -15,6 +15,7 @@ import {
 import Encryption from '@ioc:Adonis/Core/Encryption'
 import CredentialTag from './CredentialTag'
 import Tag from './Tag'
+import Folder from './Folder'
 
 export default class Credential extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -53,6 +54,14 @@ export default class Credential extends BaseModel {
   //   pivotTimestamps: true,
   // })
   // public tags: ManyToMany<typeof Tag>
+
+  @manyToMany(() => Folder, {
+    pivotForeignKey: 'credential_id',
+    pivotRelatedForeignKey: 'folder_id',
+    pivotTable: 'folder_credential',
+    pivotTimestamps: true,
+  })
+  public folders: ManyToMany<typeof Folder>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
