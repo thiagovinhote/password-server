@@ -38,4 +38,13 @@ export default class CredentialsController {
 
     return credential
   }
+
+  public update: RouteHandler = async ({ request }) => {
+    const credential = await Credential.findOrFail(request.param('id'))
+    const payload = request.only(['name', 'username', 'description'])
+
+    await credential.merge(payload).save()
+
+    return credential
+  }
 }
