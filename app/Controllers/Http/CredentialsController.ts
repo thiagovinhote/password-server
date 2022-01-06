@@ -3,8 +3,17 @@ import Folder from 'App/Models/Folder'
 import Credential from 'App/Models/Credential'
 
 export default class CredentialsController {
-  public index: RouteHandler = ({ auth }) => {
-    return auth.user?.related('credentials').query().preload('tags').orderBy('created_at', 'desc')
+  public index: RouteHandler = ({ request, auth }) => {
+    const user = auth.user!
+    const page = request.input('page', 1)
+    const limit = 10
+    const relatedCredential = user.related('credentials')
+
+    return relatedCredential
+      .query()
+      .preload('tags')
+      .orderBy('created_at', 'desc')
+      .paginate(page, limit)
   }
 
   public show: RouteHandler = async ({ request }) => {
