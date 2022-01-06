@@ -4,7 +4,7 @@ import Credential from 'App/Models/Credential'
 
 export default class CredentialsController {
   public index: RouteHandler = ({ auth }) => {
-    return auth.user?.related('credentials').query().preload('tags')
+    return auth.user?.related('credentials').query().preload('tags').orderBy('created_at', 'desc')
   }
 
   public show: RouteHandler = async ({ request }) => {
