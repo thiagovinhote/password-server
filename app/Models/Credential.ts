@@ -11,11 +11,14 @@ import {
   hasManyThrough,
   ManyToMany,
   manyToMany,
+  scope,
 } from '@ioc:Adonis/Lucid/Orm'
 import Encryption from '@ioc:Adonis/Core/Encryption'
 import CredentialTag from './CredentialTag'
 import Tag from './Tag'
 import Folder from './Folder'
+
+type SearchArguments = { value: string }
 
 export default class Credential extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -80,4 +83,15 @@ export default class Credential extends BaseModel {
       credential.password = Encryption.encrypt(credential.password)
     }
   }
+
+  public static search = scope((query, args: SearchArguments) => {
+    if (!args.value) {
+      return
+    }
+
+    query
+      .whereIlike('name', args.value)
+      .whereIlike('description', args.value)
+      .whereIlike('username', args.value)
+  })
 }

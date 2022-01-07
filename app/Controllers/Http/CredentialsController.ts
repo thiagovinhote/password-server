@@ -7,10 +7,12 @@ export default class CredentialsController {
     const user = auth.user!
     const page = request.input('page', 1)
     const limit = 10
+    const search = request.input('search')
     const relatedCredential = user.related('credentials')
 
     return relatedCredential
       .query()
+      .withScopes((scopes) => scopes.search({ value: search }))
       .preload('tags')
       .orderBy('created_at', 'desc')
       .paginate(page, limit)
