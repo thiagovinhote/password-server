@@ -9,6 +9,7 @@ export default class AppProvider {
 
   public async boot() {
     // IoC container is ready
+    this.extendQueryBuilder()
   }
 
   public async ready() {
@@ -17,5 +18,13 @@ export default class AppProvider {
 
   public async shutdown() {
     // Cleanup, since app is going down
+  }
+
+  private extendQueryBuilder() {
+    const { ModelQueryBuilder } = this.app.container.use('Adonis/Lucid/Database')
+
+    ModelQueryBuilder.macro('whereIlike', function (key, value) {
+      return this.orWhere(key, 'ilike', `%${value}%`)
+    })
   }
 }
