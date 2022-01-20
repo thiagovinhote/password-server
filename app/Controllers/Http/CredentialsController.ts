@@ -6,7 +6,7 @@ export default class CredentialsController {
   public index: RouteHandler = ({ request, auth }) => {
     const user = auth.user!
     const page = request.input('page', 1)
-    const limit = 10
+    const limit = request.input('limit', 10)
     const search = request.input('search')
     const relatedCredential = user.related('credentials')
 
