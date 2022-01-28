@@ -58,4 +58,10 @@ export default class CredentialsController {
 
     return credential
   }
+
+  public destroy: RouteHandler = async ({ request }) => {
+    const credential = await Credential.findOrFail(request.param('id'))
+
+    await credential.delete()
+  }
 }
