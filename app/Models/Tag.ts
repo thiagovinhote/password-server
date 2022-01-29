@@ -1,6 +1,8 @@
 import { v4 as uuid } from 'uuid'
 import { DateTime } from 'luxon'
-import { BaseModel, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeCreate, column, scope } from '@ioc:Adonis/Lucid/Orm'
+
+type SearchArguments = { value: string }
 
 export default class Tag extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -27,4 +29,12 @@ export default class Tag extends BaseModel {
   public static assignUuid(tag: Tag) {
     tag.id = uuid()
   }
+
+  public static search = scope((query, args: SearchArguments) => {
+    if (!args.value) {
+      return
+    }
+
+    query.whereIlike('label', args.value)
+  })
 }

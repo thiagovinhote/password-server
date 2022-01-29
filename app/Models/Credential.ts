@@ -44,19 +44,19 @@ export default class Credential extends BaseModel {
   @belongsTo(() => CredentialTag, { foreignKey: 'credential_id' })
   public tagPivot: BelongsTo<typeof CredentialTag>
 
-  @hasManyThrough([() => Tag, () => CredentialTag], {
-    foreignKey: 'credential_id',
-    throughLocalKey: 'tag_id',
-    throughForeignKey: 'id',
-  })
-  public tags: HasManyThrough<typeof Tag>
-  // @manyToMany(() => Tag, {
-  //   pivotForeignKey: 'credential_id',
-  //   pivotRelatedForeignKey: 'tag_id',
-  //   pivotTable: 'credential_tag',
-  //   pivotTimestamps: true,
+  // @hasManyThrough([() => Tag, () => CredentialTag], {
+  //   foreignKey: 'credential_id',
+  //   throughLocalKey: 'tag_id',
+  //   throughForeignKey: 'id',
   // })
-  // public tags: ManyToMany<typeof Tag>
+  // public tags: HasManyThrough<typeof Tag>
+  @manyToMany(() => Tag, {
+    pivotForeignKey: 'credential_id',
+    pivotRelatedForeignKey: 'tag_id',
+    pivotTable: 'credential_tag',
+    pivotTimestamps: true,
+  })
+  public tags: ManyToMany<typeof Tag>
 
   @manyToMany(() => Folder, {
     pivotForeignKey: 'credential_id',
