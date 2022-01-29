@@ -30,7 +30,7 @@ Route.group(() => {
   Route.resource('users', 'UsersController').apiOnly().except(['create'])
   Route.resource('tags', 'TagsController').apiOnly()
   Route.resource('credentials', 'CredentialsController').apiOnly()
-  Route.resource('credentials.tags', 'CredentialTagsController').apiOnly()
+  Route.resource('credentials.tags', 'CredentialTagsController').only(['store', 'destroy'])
   Route.resource('folders', 'FoldersController').apiOnly()
   Route.resource('folders.credentials', 'FolderCredentialsController').apiOnly()
   Route.resource('credentials.password', 'PasswordController').only(['index'])
