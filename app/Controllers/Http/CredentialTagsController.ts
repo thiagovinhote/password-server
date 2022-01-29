@@ -1,15 +1,18 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
-import Credential from 'App/Models/Credential'
+import CredentialTag from 'App/Models/CredentialTag'
 
 export default class CredentialTagsController {
   public store: RouteHandler = async ({ request }) => {
     const credentialId = request.param('credential_id')
     const tagId = request.input('tag_id')
-    const tagPivot = Credential.$getRelation('tagPivot').relatedModel()
 
-    return tagPivot.create({
-      tag_id: tagId,
-      credential_id: credentialId,
-    })
+    return CredentialTag.create({ credential_id: credentialId, tag_id: tagId })
+  }
+
+  public destroy: RouteHandler = async ({ request }) => {
+    const credentialId = request.param('credential_id')
+    const tagId = request.param('id')
+
+    await CredentialTag.query().where({ credential_id: credentialId, tag_id: tagId }).delete()
   }
 }
