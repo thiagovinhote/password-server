@@ -2,11 +2,18 @@ import { RouteHandler } from '@ioc:Adonis/Core/Route'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class TagsController {
-  public index: RouteHandler = ({ auth }) => {
-    const { user } = auth
-    const relatedTag = user?.related('tags')
+  public index: RouteHandler = ({ auth, request }) => {
+    const user = auth.user!
+    const page = request.input('page', 1)
+    const limit = request.input('limit', 10)
+    const search = request.input('search')
+    const relatedTag = user.related('tags')
 
-    return relatedTag?.query()
+    return relatedTag
+      .query()
+      .withScopes(scopes => scopes.search({ value: search }))
+      .orderBy('created_at', 'desc')
+      .paginate(page, limit)
   }
 
   public store: RouteHandler = async ({ auth, request }) => {
