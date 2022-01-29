@@ -1,6 +1,6 @@
 ###
 GET http://localhost:3333/tags
-Authorization: Bearer Y2t0enpyMHBpMDAwMDB2dmVmcWFvOHd2Yg.HxlzV1l57oPpMfB26lbKxZX7dScZwQOwzEIDuU8cj2dCpPvdsDCSzPzD1PWd
+Authorization: Bearer Y2t5cnhkNWVwMDAwNnhzZ3BjN3JuOWt0ZA.RI-iCm9UjRYiRlwanYACVnj1rXWxtwQFNIx_WCr50oC6mQZkbFv9zbNbeFb1
 
 ###
 POST http://localhost:3333/tags
