@@ -20,6 +20,10 @@ export default class AuthController {
     }
   }
 
+  public logout: RouteHandler = async ({ auth }) => {
+    await auth.use('api').revoke()
+  }
+
   public me: RouteHandler = ({ auth }) => {
     return auth.user
   }
