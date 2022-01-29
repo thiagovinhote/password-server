@@ -20,4 +20,9 @@ Content-Type: application/json
 ###
 GET  http://localhost:3333/auth/me
 Content-Type: application/json
-Authorization: Bearer Y2t0dXZ6aXIwMDAwMDkzdmVlYTd1NjRncg.0nMTb6ajPHrYHeuP08hGYmJYXNxuRFiIDf-0OEB7Q__GXN20-u4JTDnHNi-x
+Authorization: Bearer Y2t6MDdkZ213MDAwMHBrZ3A2aDVkM2ZxZw.KaygGPhhBJj881H3dJTe6LkoCDzXW9OpTpli3AU5YsZfoAUAcvf7LMkSDRx3
+
+###
+POST  http://localhost:3333/auth/logout
+Content-Type: application/json
+Authorization: Bearer Y2t6MDdkZ213MDAwMHBrZ3A2aDVkM2ZxZw.KaygGPhhBJj881H3dJTe6LkoCDzXW9OpTpli3AU5YsZfoAUAcvf7LMkSDRx3
