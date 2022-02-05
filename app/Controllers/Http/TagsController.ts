@@ -11,7 +11,7 @@ export default class TagsController {
 
     return relatedTag
       .query()
-      .withScopes(scopes => scopes.search({ value: search }))
+      .withScopes((scopes) => scopes.search({ value: search }))
       .orderBy('created_at', 'desc')
       .paginate(page, limit)
   }

@@ -8,13 +8,13 @@ export default class AuthController {
 
     try {
       const token = await auth
-      .use('api')
-      .attempt(email, password, { expiresIn: Env.get('JWT_EXPIRES_IN') })
+        .use('api')
+        .attempt(email, password, { expiresIn: Env.get('JWT_EXPIRES_IN') })
 
-    return {
-      user: token.user,
-      token: token.token,
-    }
+      return {
+        user: token.user,
+        token: token.token,
+      }
     } catch (error) {
       response.unauthorized({ error: { code: error.code, message: error.message } })
     }

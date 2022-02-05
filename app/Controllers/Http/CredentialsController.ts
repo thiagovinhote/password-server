@@ -26,7 +26,7 @@ export default class CredentialsController {
   public show: RouteHandler = async ({ request }) => {
     const credential = await Credential.findOrFail(request.param('id'))
 
-    await credential.load(loader => loader.load('folders').load('tags'))
+    await credential.load((loader) => loader.load('folders').load('tags'))
 
     return credential
   }

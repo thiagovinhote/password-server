@@ -15,7 +15,6 @@ import Encryption from '@ioc:Adonis/Core/Encryption'
 import CredentialTag from './CredentialTag'
 import Tag from './Tag'
 import Folder from './Folder'
-import Database from '@ioc:Adonis/Lucid/Database'
 
 type SearchArguments = { value: string }
 type FilterByTagsArguments = { value: string[] }
