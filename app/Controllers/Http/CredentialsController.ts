@@ -8,13 +8,18 @@ export default class CredentialsController {
     const page = request.input('page', 1)
     const limit = request.input('limit', 10)
     const search = request.input('search')
+    const tagQueryString = request.input('tags', [])
+    const tags = Array.isArray(tagQueryString) ? tagQueryString : [tagQueryString]
     const relatedCredential = user.related('credentials')
 
     return relatedCredential
       .query()
-      .withScopes((scopes) => scopes.search({ value: search }))
+      .withScopes((scopes) => {
+        scopes.search({ value: search })
+        scopes.filterByTags({ value: tags })
+      })
       .preload('tags')
-      .orderBy('created_at', 'desc')
+      .orderBy('credentials.created_at', 'desc')
       .paginate(page, limit)
   }
 

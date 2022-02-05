@@ -15,8 +15,10 @@ import Encryption from '@ioc:Adonis/Core/Encryption'
 import CredentialTag from './CredentialTag'
 import Tag from './Tag'
 import Folder from './Folder'
+import Database from '@ioc:Adonis/Lucid/Database'
 
 type SearchArguments = { value: string }
+type FilterByTagsArguments = { value: string[] }
 
 export default class Credential extends BaseModel {
   public static selfAssignPrimaryKey = true
@@ -85,5 +87,15 @@ export default class Credential extends BaseModel {
       .whereIlike('name', args.value)
       .whereIlike('description', args.value)
       .whereIlike('username', args.value)
+  })
+
+  public static filterByTags = scope((query, args: FilterByTagsArguments) => {
+    if (!args.value.length) {
+      return
+    }
+
+    query
+      .join('credential_tag', 'credentials.id', 'credential_tag.credential_id')
+      .whereIn('credential_tag.tag_id', args.value)
   })
 }
