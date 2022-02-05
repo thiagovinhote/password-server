@@ -1,26 +1,22 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
 import Folder from 'App/Models/Folder'
 import Credential from 'App/Models/Credential'
+import SearchCredentialsService from 'App/Services/SearchCredentialsService'
 
 export default class CredentialsController {
   public index: RouteHandler = ({ request, auth }) => {
     const user = auth.user!
-    const page = request.input('page', 1)
-    const limit = request.input('limit', 10)
-    const search = request.input('search')
+    const page = Number(request.input('page', 1))
+    const limit = Number(request.input('limit', 10))
+    const search = String(request.input('search'))
     const tagQueryString = request.input('tags', [])
-    const tags = Array.isArray(tagQueryString) ? tagQueryString : [tagQueryString]
-    const relatedCredential = user.related('credentials')
+    const tags: string[] = Array.isArray(tagQueryString) ? tagQueryString : [tagQueryString]
 
-    return relatedCredential
-      .query()
-      .withScopes((scopes) => {
-        scopes.search({ value: search })
-        scopes.filterByTags({ value: tags })
-      })
-      .preload('tags')
-      .orderBy('credentials.created_at', 'desc')
-      .paginate(page, limit)
+    return SearchCredentialsService.handle({
+      user,
+      pagination: { page, limit },
+      filters: { search, tags },
+    })
   }
 
   public show: RouteHandler = async ({ request }) => {
