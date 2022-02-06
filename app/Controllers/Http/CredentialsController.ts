@@ -1,68 +1,71 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
-import Folder from 'App/Models/Folder'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import Credential from 'App/Models/Credential'
 import SearchCredentialsService from 'App/Services/SearchCredentialsService'
+import SaveCredentialService from 'App/Services/SaveCredentialService'
 
 export default class CredentialsController {
-  public index: RouteHandler = ({ request, auth }) => {
+  public index: RouteHandler = async ({ request, auth }) => {
     const user = auth.user!
-    const page = Number(request.input('page', 1))
-    const limit = Number(request.input('limit', 10))
-    const search = String(request.input('search'))
-    const tagQueryString = request.input('tags', [])
-    const tags: string[] = Array.isArray(tagQueryString) ? tagQueryString : [tagQueryString]
-
-    return SearchCredentialsService.handle({
+    const payload = await request.validate({
+      schema: schema.create({
+        page: schema.number.optional(),
+        limit: schema.number.optional(),
+        search: schema.string.optional({ trim: true }),
+        tags: schema.array.optional().members(schema.string({ trim: true }, [rules.uuid()])),
+      }),
+    })
+    return SearchCredentialsService.perform({
       user,
-      pagination: { page, limit },
-      filters: { search, tags },
+      pagination: { page: payload.page, limit: payload.limit },
+      filters: { search: payload.search, tags: payload.tags },
     })
   }
 
   public show: RouteHandler = async ({ request }) => {
     const credential = await Credential.findOrFail(request.param('id'))
-
     await credential.load((loader) => loader.load('folders').load('tags'))
-
     return credential
   }
 
   public store: RouteHandler = async ({ request, auth }) => {
     const user = auth.user!
-    const payload = request.only(['name', 'password', 'description'])
-    const folderId = request.input('folder_id', null)
-    const username = request.input('username', '*')
-    const relatedCredential = user.related('credentials')
-
-    const credential = await relatedCredential.create({
-      ...payload,
-      username,
+    const payload = await request.validate({
+      schema: schema.create({
+        name: schema.string({ trim: true }),
+        password: schema.string(),
+        description: schema.string.nullableAndOptional({ trim: true }),
+        username: schema.string.nullableAndOptional({ trim: true }),
+        folder_id: schema.string.optional({}, [rules.uuid()]),
+      }),
     })
-
-    if (folderId && credential.$isPersisted) {
-      const credentialPivot = Folder.$getRelation('credentialPivot').relatedModel()
-      await credentialPivot.create({
-        folder_id: folderId,
-        credential_id: credential.id,
-      })
-      await credential.refresh()
-    }
-
-    return credential
+    return SaveCredentialService.perform({
+      user,
+      payload: {
+        name: payload.name,
+        description: payload.description,
+        password: payload.password,
+        username: payload.username,
+        folderId: payload.folder_id,
+      },
+    })
   }
 
   public update: RouteHandler = async ({ request }) => {
+    const payload = await request.validate({
+      schema: schema.create({
+        name: schema.string.optional({ trim: true }),
+        username: schema.string.optional({ trim: true }),
+        description: schema.string.nullableAndOptional({ trim: true }),
+      }),
+    })
     const credential = await Credential.findOrFail(request.param('id'))
-    const payload = request.only(['name', 'username', 'description'])
-
     await credential.merge(payload).save()
-
     return credential
   }
 
   public destroy: RouteHandler = async ({ request }) => {
     const credential = await Credential.findOrFail(request.param('id'))
-
     await credential.delete()
   }
 }
