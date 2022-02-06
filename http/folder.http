@@ -1,6 +1,6 @@
 ###
 GET http://localhost:3333/folders
-Authorization: Bearer Y2t0enk1YmY0MDAwMDQ0dmVjcGI5NWN6aA.5fqDHZFm1QChfezXYXfut2RM4u-Qc3D8qlYy2ze6-VSbthKTO-qpH5sZceLr
+Authorization: Bearer Y2t6YWZhcnhxMDAwMHVlZ3AwaG5hMHNqYQ.MAOfckB8EklKnBeCiH_OPs9NUmliF_CO3HnsXU-P_5g0jWJK5UeIaaGRixxi
 
 ###
 POST http://localhost:3333/folders
