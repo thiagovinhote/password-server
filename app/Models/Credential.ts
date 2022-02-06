@@ -16,7 +16,7 @@ import CredentialTag from './CredentialTag'
 import Tag from './Tag'
 import Folder from './Folder'
 
-type SearchArguments = { value: string }
+type SearchArguments = { value?: string }
 type FilterByTagsArguments = { value: string[] }
 
 export default class Credential extends BaseModel {
@@ -35,7 +35,7 @@ export default class Credential extends BaseModel {
   public password: string
 
   @column()
-  public description: string
+  public description: string | null
 
   @column({ serializeAs: null })
   public user_id: string
