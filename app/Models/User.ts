@@ -5,6 +5,7 @@ import {
   beforeCreate,
   beforeSave,
   column,
+  computed,
   hasMany,
   HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
@@ -24,6 +25,14 @@ export default class User extends BaseModel {
 
   @column()
   public email: string
+
+  @column({ serializeAs: null })
+  public picture?: string
+
+  @computed({ serializeAs: 'picture_url' })
+  public get pictureUrl() {
+    return this.picture ? this.picture : null
+  }
 
   @column({ serializeAs: null })
   public password: string
