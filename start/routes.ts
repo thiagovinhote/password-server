@@ -31,6 +31,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.resource('users', 'UsersController').apiOnly().except(['create'])
+  Route.resource('users.picture', 'UsersPictureController').only(['store'])
   Route.resource('tags', 'TagsController').apiOnly()
   Route.resource('credentials', 'CredentialsController').apiOnly()
   Route.resource('credentials.tags', 'CredentialTagsController').only(['store', 'destroy'])
