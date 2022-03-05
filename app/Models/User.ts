@@ -5,7 +5,6 @@ import {
   beforeCreate,
   beforeSave,
   column,
-  computed,
   hasMany,
   HasMany,
 } from '@ioc:Adonis/Lucid/Orm'
@@ -16,6 +15,11 @@ import Folder from './Folder'
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true
+  public serializeExtras() {
+    return {
+      picture_url: this.$extras.pictureUrl,
+    }
+  }
 
   @column({ isPrimary: true })
   public id: string
@@ -28,11 +32,6 @@ export default class User extends BaseModel {
 
   @column({ serializeAs: null })
   public picture?: string
-
-  @computed({ serializeAs: 'picture_url' })
-  public get pictureUrl() {
-    return this.picture ? this.picture : null
-  }
 
   @column({ serializeAs: null })
   public password: string
