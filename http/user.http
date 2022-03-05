@@ -1,5 +1,6 @@
 ###
 GET http://localhost:3333/users
+Authorization: Bearer Y2t6YXFqZHViMDAwMGZqZ3AwcDJ4Y2M1Mw.TVdBeDOs4I7wRR5L0ojORY4q2RjuavuKS4NQgEAQv2q33tqnimhEHPAm7Ch-
 
 ###
 POST http://localhost:3333/users
@@ -22,3 +23,18 @@ Content-Type: application/json
   "name": "Fulano",
   "email": "fulano@gmail.com"
 }
+
+###
+POST  http://localhost:3333/users/91935efa-3aa5-4f10-99a2-f48bba2d94c7/picture
+Authorization: Bearer Y2t6YzBudXl1MDAwMWdnZ3A2cWxuZWpyeQ.21LFxGmEulyPefgJZL68aLJCRovU8umkaGxqAyEilWQQMzdLdDPaT-wd5i57
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+# ------WebKitFormBoundary7MA4YWxkTrZu0gW
+# Content-Disposition: form-data; name="picture"; filename="images/sheldon.jpeg"
+# Content-Type: image/jpeg
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="picture"; filename="images/melman.png"
+Content-Type: image/png
+
+< ./images/melman.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
