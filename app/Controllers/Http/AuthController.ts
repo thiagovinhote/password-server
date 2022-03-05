@@ -1,5 +1,6 @@
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
 import Env from '@ioc:Adonis/Core/Env'
+import PrepareUserService from 'App/Services/PrepareUserService'
 
 export default class AuthController {
   public login: RouteHandler = async ({ auth, request, response }) => {
@@ -24,7 +25,7 @@ export default class AuthController {
     await auth.use('api').revoke()
   }
 
-  public me: RouteHandler = ({ auth }) => {
-    return auth.user
+  public me: RouteHandler = async ({ auth }) => {
+    return PrepareUserService.perform({ user: auth.user! })
   }
 }
