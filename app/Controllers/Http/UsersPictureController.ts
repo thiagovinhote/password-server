@@ -1,3 +1,4 @@
+import Drive from '@ioc:Adonis/Core/Drive'
 import { RouteHandler } from '@ioc:Adonis/Core/Route'
 
 export default class UsersPictureController {
@@ -14,6 +15,10 @@ export default class UsersPictureController {
 
     if (!file.isValid) {
       return response.badRequest(file.errors)
+    }
+
+    if (user.picture) {
+      await Drive.delete(user.picture)
     }
 
     await file.moveToDisk('pictures', { name: `${user.id}.${file.extname}` })
