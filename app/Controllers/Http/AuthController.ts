@@ -12,8 +12,10 @@ export default class AuthController {
         .use('api')
         .attempt(email, password, { expiresIn: Env.get('JWT_EXPIRES_IN') })
 
+      const user = await PrepareUserService.perform({ user: token.user })
+
       return {
-        user: token.user,
+        user,
         token: token.token,
       }
     } catch (error) {
