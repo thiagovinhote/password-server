@@ -29,6 +29,7 @@ export default class SearchCredentialsService {
       .preload('tags')
       .preload('folders')
       .orderBy('credentials.created_at', 'desc')
+      .select('credentials.*')
       .paginate(pagination.page ?? 1, pagination.limit)
   }
 }
