@@ -1,0 +1,13 @@
+###
+POST http://localhost:3333/generate
+Content-Type: application/json
+Authorization: Bearer Y2w1bG9ocXIxMDAwMTJpNm5kM3dsZjJlag._yDcJk7_SGjMFI9XdlvxY9m5QZqfi9TyW0eZ2OK0exIq2XxPecFkjlfDDgeL
+Accept: application/json
+
+{
+  "include_numbers": true,
+  "include_symbols": false,
+  "lowercase_characters": true,
+  "uppercase_characters": true,
+  "password_size": 32
+}
