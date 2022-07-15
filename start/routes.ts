@@ -42,3 +42,7 @@ Route.group(() => {
   Route.resource('folders.credentials', 'FolderCredentialsController').apiOnly()
   Route.resource('credentials.password', 'PasswordController').only(['index'])
 }).middleware('auth')
+
+Route.group(() => {
+  Route.resource('generate', 'GenerateController').only(['store'])
+})
